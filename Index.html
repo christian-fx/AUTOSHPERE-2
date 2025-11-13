@@ -1,0 +1,1090 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AutoSphere | Discover Your Dream Car</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Open+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+      /* CSS Variables for Color Palette and Typography */
+      :root {
+        --primary: #1a3a5f;
+        --primary-light: #2a5a8c;
+        --secondary: #d32f2f;
+        --secondary-light: #ff6659;
+        --accent: #ff9800;
+        --light: #f8f9fa;
+        --dark: #212529;
+        --gray: #6c757d;
+        --gray-light: #e9ecef;
+        --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        --transition: all 0.3s ease;
+      }
+
+      /* Base Styles */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        font-family: 'Open Sans', sans-serif;
+        background: var(--light);
+        color: var(--dark);
+        line-height: 1.6;
+        padding-top: 80px;
+      }
+
+      h1, h2, h3, h4, h5, h6 {
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 700;
+        line-height: 1.2;
+        margin-bottom: 1rem;
+      }
+
+      p {
+        margin-bottom: 1rem;
+      }
+
+      a {
+        text-decoration: none;
+        color: inherit;
+        transition: var(--transition);
+      }
+
+      img {
+        max-width: 100%;
+        height: auto;
+        display: block;
+      }
+
+      section {
+        padding: 5rem 1rem;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 1rem;
+      }
+
+      .btn {
+        display: inline-block;
+        padding: 0.8rem 1.8rem;
+        border-radius: 4px;
+        font-weight: 600;
+        text-align: center;
+        cursor: pointer;
+        transition: var(--transition);
+        border: none;
+        font-family: 'Montserrat', sans-serif;
+        font-size: 1rem;
+      }
+
+      .btn-primary {
+        background: var(--primary);
+        color: white;
+      }
+
+      .btn-primary:hover {
+        background: var(--primary-light);
+        transform: translateY(-2px);
+        box-shadow: var(--shadow);
+      }
+
+      .btn-secondary {
+        background: var(--secondary);
+        color: white;
+      }
+
+      .btn-secondary:hover {
+        background: var(--secondary-light);
+        transform: translateY(-2px);
+        box-shadow: var(--shadow);
+      }
+
+      .btn-outline {
+        background: transparent;
+        color: white;
+        border: 2px solid white;
+      }
+
+      .btn-outline:hover {
+        background: white;
+        color: var(--primary);
+        transform: translateY(-2px);
+      }
+
+      /* Header & Navigation */
+      header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(10px);
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        z-index: 1000;
+        padding: 1rem 0;
+        transition: var(--transition);
+      }
+
+      .nav-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 1rem;
+      }
+
+      .logo {
+        font-size: 2rem;
+        font-weight: 800;
+        color: var(--primary);
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+      }
+
+      .nav-links {
+        display: flex;
+        list-style: none;
+        gap: 2rem;
+      }
+
+      .nav-links a {
+        font-weight: 600;
+        color: var(--dark);
+        position: relative;
+        padding: 0.5rem 0;
+      }
+
+      .nav-links a:after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background: var(--secondary);
+        transition: var(--transition);
+      }
+
+      .nav-links a:hover {
+        color: var(--secondary);
+      }
+
+      .nav-links a:hover:after {
+        width: 100%;
+      }
+
+      /* Hamburger Menu */
+      .hamburger {
+        display: none;
+        flex-direction: column;
+        justify-content: space-between;
+        width: 30px;
+        height: 21px;
+        cursor: pointer;
+      }
+
+      .hamburger span {
+        display: block;
+        height: 3px;
+        width: 100%;
+        background: var(--primary);
+        border-radius: 3px;
+        transition: var(--transition);
+      }
+
+      /* Home Section */
+      #home {
+        background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1494976388531-d1058494cdd8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        color: white;
+        padding: 0 1rem;
+      }
+
+      .home-content h1 {
+        font-size: 3.5rem;
+        margin-bottom: 1.5rem;
+        text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+      }
+
+      .home-content p {
+        font-size: 1.2rem;
+        max-width: 800px;
+        margin: 0 auto 2.5rem;
+        line-height: 1.8;
+      }
+
+      .home-buttons {
+        display: flex;
+        gap: 1rem;
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+
+      /* About Section */
+      #about {
+        background: white;
+      }
+
+      .about-content {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 3rem;
+        align-items: center;
+        margin-bottom: 4rem;
+      }
+
+      .about-content img {
+        border-radius: 8px;
+        box-shadow: var(--shadow);
+      }
+
+      .about-stats {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 2rem;
+        margin-top: 3rem;
+      }
+
+      .stat-item {
+        text-align: center;
+        padding: 1.5rem;
+        border-radius: 8px;
+        background: var(--gray-light);
+        transition: var(--transition);
+      }
+
+      .stat-item:hover {
+        transform: translateY(-5px);
+        box-shadow: var(--shadow);
+      }
+
+      .stat-item h2 {
+        color: var(--primary);
+        font-size: 2.5rem;
+        margin-bottom: 0.5rem;
+      }
+
+      .stat-item p {
+        color: var(--gray);
+      }
+
+      .vehicle-showcase {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+        margin-top: 3rem;
+      }
+
+      .vehicle-card {
+        background: white;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: var(--shadow);
+        transition: var(--transition);
+      }
+
+      .vehicle-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+      }
+
+      .vehicle-card img {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+      }
+
+      .vehicle-card-content {
+        padding: 1.5rem;
+      }
+
+      .vehicle-card h3 {
+        font-size: 1.5rem;
+        margin-bottom: 0.5rem;
+      }
+
+      .vehicle-card p {
+        color: var(--gray);
+        margin-bottom: 1.5rem;
+      }
+
+      /* Customer Service */
+      #customer-service {
+        background: linear-gradient(135deg, var(--primary), var(--primary-light));
+        color: white;
+        text-align: center;
+      }
+
+      .customer-service-content h2 {
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+      }
+
+      .customer-service-content p {
+        font-size: 1.2rem;
+        max-width: 600px;
+        margin: 0 auto 2rem;
+      }
+
+      /* Testimonials */
+      #testimonials {
+        background: var(--gray-light);
+      }
+
+      .testimonial-content h2 {
+        text-align: center;
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+      }
+
+      .testimonial-content .writeup {
+        text-align: center;
+        max-width: 600px;
+        margin: 0 auto 3rem;
+        font-size: 1.1rem;
+      }
+
+      .testimonial-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+      }
+
+      .testimonial-card {
+        background: white;
+        padding: 2rem;
+        border-radius: 8px;
+        box-shadow: var(--shadow);
+        transition: var(--transition);
+      }
+
+      .testimonial-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+      }
+
+      .stars {
+        color: var(--accent);
+        font-size: 1.2rem;
+        margin-bottom: 1rem;
+      }
+
+      .testimonial-text {
+        font-style: italic;
+        margin-bottom: 1.5rem;
+        color: var(--gray);
+      }
+
+      .testimonial-author {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+      }
+
+      .testimonial-author img {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        object-fit: cover;
+      }
+
+      .testimonial-author h4 {
+        margin-bottom: 0.2rem;
+      }
+
+      .testimonial-author p {
+        color: var(--gray);
+        font-size: 0.9rem;
+        margin: 0;
+      }
+
+      /* Blog Section */
+      #blog {
+        background: white;
+      }
+
+      .blog-content h2 {
+        text-align: center;
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+      }
+
+      .blog-content .writeup {
+        text-align: center;
+        max-width: 600px;
+        margin: 0 auto 2rem;
+        font-size: 1.1rem;
+      }
+
+      .blog-cta {
+        text-align: center;
+        margin-bottom: 3rem;
+      }
+
+      .blog-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 2rem;
+      }
+
+      .blog-card {
+        background: white;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: var(--shadow);
+        transition: var(--transition);
+      }
+
+      .blog-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+      }
+
+      .blog-card img {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+      }
+
+      .blog-card-content {
+        padding: 1.5rem;
+      }
+
+      .blog-card small {
+        color: var(--accent);
+        font-weight: 600;
+        text-transform: uppercase;
+        font-size: 0.8rem;
+      }
+
+      .blog-card h3 {
+        font-size: 1.3rem;
+        margin: 0.5rem 0 1rem;
+      }
+
+      .blog-card p {
+        color: var(--gray);
+        margin-bottom: 1rem;
+      }
+
+      .blog-card a {
+        color: var(--primary);
+        font-weight: 600;
+        font-size: 0.9rem;
+      }
+
+      .blog-card a:hover {
+        color: var(--secondary);
+      }
+
+      /* Contact Form */
+      #get-in-touch {
+        background: var(--gray-light);
+      }
+
+      .contact-content h2 {
+        text-align: center;
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+      }
+
+      .contact-content > p {
+        text-align: center;
+        max-width: 600px;
+        margin: 0 auto 3rem;
+        font-size: 1.1rem;
+      }
+
+      .form-wrapper {
+        max-width: 600px;
+        margin: 0 auto;
+        background: white;
+        padding: 2.5rem;
+        border-radius: 8px;
+        box-shadow: var(--shadow);
+      }
+
+      .form-group {
+        margin-bottom: 1.5rem;
+      }
+
+      label {
+        display: block;
+        margin-bottom: 0.5rem;
+        font-weight: 600;
+        color: var(--primary);
+      }
+
+      input, textarea {
+        width: 100%;
+        padding: 0.8rem 1rem;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        font-family: 'Open Sans', sans-serif;
+        font-size: 1rem;
+        transition: var(--transition);
+      }
+
+      input:focus, textarea:focus {
+        outline: none;
+        border-color: var(--primary);
+        box-shadow: 0 0 0 2px rgba(26, 58, 95, 0.2);
+      }
+
+      .form-group1 {
+        display: flex;
+        align-items: flex-start;
+        gap: 0.5rem;
+        margin-bottom: 1.5rem;
+      }
+
+      .form-group1 input[type="checkbox"] {
+        width: auto;
+        margin-top: 0.3rem;
+      }
+
+      .form-group1 label {
+        font-weight: normal;
+        margin: 0;
+      }
+
+      .form-group1 a {
+        color: var(--primary);
+        font-weight: 600;
+      }
+
+      .form-group1 a:hover {
+        color: var(--secondary);
+      }
+
+      /* Footer */
+      footer {
+        background: var(--dark);
+        color: white;
+        padding: 4rem 1rem 2rem;
+      }
+
+      .footer-content {
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      .footer-content h2 {
+        text-align: center;
+        font-size: 2.5rem;
+        margin-bottom: 2rem;
+        color: white;
+      }
+
+      .footer-links {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 2rem;
+        margin-bottom: 2rem;
+        padding-bottom: 2rem;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      .footer-links a {
+        font-weight: 600;
+      }
+
+      .footer-links a:hover {
+        color: var(--accent);
+      }
+
+      .footer-bottom {
+        text-align: center;
+        padding-top: 2rem;
+      }
+
+      .footer-bottom p {
+        margin-bottom: 1rem;
+        color: rgba(255, 255, 255, 0.7);
+      }
+
+      .footer-bottom a {
+        color: rgba(255, 255, 255, 0.7);
+        margin: 0 0.5rem;
+      }
+
+      .footer-bottom a:hover {
+        color: white;
+      }
+
+      /* Responsive Design */
+      @media (max-width: 992px) {
+        .home-content h1 {
+          font-size: 2.8rem;
+        }
+        
+        .about-content {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      @media (max-width: 768px) {
+        body {
+          padding-top: 70px;
+        }
+        
+        .nav-links {
+          position: fixed;
+          top: 70px;
+          left: 0;
+          width: 100%;
+          background: white;
+          flex-direction: column;
+          align-items: center;
+          padding: 2rem 0;
+          box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+          transform: translateY(-150%);
+          transition: transform 0.4s ease;
+          z-index: 999;
+        }
+
+        .nav-links.active {
+          transform: translateY(0);
+        }
+
+        .hamburger {
+          display: flex;
+        }
+
+        .hamburger.active span:nth-child(1) {
+          transform: rotate(45deg) translate(6px, 6px);
+        }
+
+        .hamburger.active span:nth-child(2) {
+          opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+          transform: rotate(-45deg) translate(6px, -6px);
+        }
+
+        .home-content h1 {
+          font-size: 2.2rem;
+        }
+
+        .home-content p {
+          font-size: 1rem;
+        }
+
+        .home-buttons {
+          flex-direction: column;
+          align-items: center;
+        }
+
+        .btn {
+          width: 100%;
+          max-width: 250px;
+        }
+
+        section {
+          padding: 3rem 1rem;
+        }
+      }
+
+      @media (max-width: 576px) {
+        .home-content h1 {
+          font-size: 1.8rem;
+        }
+        
+        .logo {
+          font-size: 1.5rem;
+        }
+        
+        .stat-item h2 {
+          font-size: 2rem;
+        }
+        
+        .form-wrapper {
+          padding: 1.5rem;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- HEADER -->
+    <header>
+      <nav class="navbar" aria-label="Main navigation">
+        <div class="nav-container">
+          <h1 class="logo">AutoSphere</h1>
+
+          <!-- Hamburger Menu -->
+          <div class="hamburger" id="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+
+          <!-- Navigation links -->
+          <ul class="nav-links" id="nav-links">
+            <li><a href="#home">Inventory</a></li>
+            <li><a href="#customer-service">Customer Service</a></li>
+            <li><a href="#testimonials">Testimonials</a></li>
+            <li><a href="#blog">Blog</a></li>
+          </ul>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <!-- HOME SECTION -->
+      <section id="home">
+        <div class="container">
+          <div class="home-content">
+            <h1>Discover Your Dream Car Today</h1>
+            <p>
+              Welcome to AutoSphere, where we offer a diverse selection of
+              high-quality pre-owned vehicles. Our team is dedicated to providing
+              you with an exceptional car-buying experience. Explore our inventory
+              to find your perfect match.
+            </p>
+
+            <div class="home-buttons">
+              <a href="#" class="btn btn-primary">View Inventory</a>
+              <a href="#" class="btn btn-outline">Contact Us</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ABOUT SECTION -->
+      <section id="about">
+        <div class="container">
+          <div class="about-content">
+            <img src="https://images.unsplash.com/photo-1580273916550-e323be2ae537?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="AutoSphere Office" />
+
+            <div>
+              <h2>Discover Our Mission and Values</h2>
+              <p>
+                At AutoSphere, we strive to provide a seamless car-buying
+                experience. Our mission is to ensure every customer leaves
+                satisfied with a vehicle that meets their needs, backed by our
+                commitment to integrity and quality.
+              </p>
+            </div>
+          </div>
+
+          <div class="about-stats">
+            <div class="stat-item">
+              <h2>2024</h2>
+              <p>Years of Excellence</p>
+            </div>
+
+            <div class="stat-item">
+              <h2>5000+</h2>
+              <p>Vehicles Sold</p>
+            </div>
+
+            <div class="stat-item">
+              <h2>4</h2>
+              <p>Core Values</p>
+            </div>
+
+            <div class="stat-item">
+              <h2>3</h2>
+              <p>Team Members</p>
+            </div>
+          </div>
+
+          <div class="vehicle-showcase">
+            <div class="vehicle-card">
+              <img src="https://images.unsplash.com/photo-1621007947382-bb3c3994e3fb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="2018 Honda Accord" />
+              <div class="vehicle-card-content">
+                <h3>2018 Honda Accord</h3>
+                <p>
+                  Reliable and fuel-efficient sedan with advanced safety features.
+                </p>
+                <a href="#" class="btn btn-primary">View Details</a>
+              </div>
+            </div>
+
+            <div class="vehicle-card">
+              <img src="https://images.unsplash.com/photo-1621007947382-bb3c3994e3fb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="2019 Ford F-150" />
+              <div class="vehicle-card-content">
+                <h3>2019 Ford F-150</h3>
+                <p>Powerful pickup truck designed for both work and play.</p>
+                <a href="#" class="btn btn-primary">View Details</a>
+              </div>
+            </div>
+
+            <div class="vehicle-card">
+              <img src="https://images.unsplash.com/photo-1621007947382-bb3c3994e3fb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="2020 Toyota Rav4" />
+              <div class="vehicle-card-content">
+                <h3>2020 Toyota Rav4</h3>
+                <p>Versatile SUV with excellent fuel economy.</p>
+                <a href="#" class="btn btn-primary">View Details</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CUSTOMER SERVICE -->
+      <section id="customer-service">
+        <div class="container">
+          <div class="customer-service-content">
+            <h2>Get Help</h2>
+            <p>Contact our team for any questions or support you need.</p>
+            <a href="#" class="btn btn-secondary">Call Now</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- TESTIMONIALS -->
+      <section id="testimonials">
+        <div class="container">
+          <div class="testimonial-content">
+            <h2>Customer Reviews</h2>
+            <p class="writeup">
+              See what our satisfied customers say about their experience with AutoSphere!
+            </p>
+
+            <div class="testimonial-grid">
+              <!-- Each testimonial grouped -->
+              <div class="testimonial-card">
+                <div class="stars">★★★★★</div>
+                <p class="testimonial-text">
+                  I had a fantastic experience buying my SUV from AutoSphere. The
+                  staff was knowledgeable and helped me find the perfect vehicle!
+                </p>
+                <div class="testimonial-author">
+                  <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="John Doe" />
+                  <div>
+                    <h4>John Doe</h4>
+                    <p>Satisfied Customer</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="testimonial-card">
+                <div class="stars">★★★★★</div>
+                <p class="testimonial-text">
+                  AutoSphere made my car buying process so easy! I love my new
+                  sedan and the service was top-notch.
+                </p>
+                <div class="testimonial-author">
+                  <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Jane Smith" />
+                  <div>
+                    <h4>Jane Smith</h4>
+                    <p>Happy Buyer</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="testimonial-card">
+                <div class="stars">★★★★★</div>
+                <p class="testimonial-text">
+                  This is my second purchase from AutoSphere, and I couldn't be
+                  happier. Great selection and friendly staff!
+                </p>
+                <div class="testimonial-author">
+                  <img src="https://randomuser.me/api/portraits/men/22.jpg" alt="Michael Johnson" />
+                  <div>
+                    <h4>Michael Johnson</h4>
+                    <p>Returning Customer</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- BLOG SECTION -->
+      <section id="blog">
+        <div class="container">
+          <div class="blog-content">
+            <h2>Latest Articles</h2>
+            <p class="writeup">Explore our expert tips and insights</p>
+
+            <div class="blog-cta">
+              <a href="#" class="btn btn-primary">Read More</a>
+            </div>
+
+            <div class="blog-grid">
+              <div class="blog-card">
+                <img src="https://images.unsplash.com/photo-1486496572940-2bb2341fdbdf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Family car" />
+                <div class="blog-card-content">
+                  <small>Car Buying Tips</small>
+                  <h3><a href="#">Top 5 Tips for Buying a Pre-Owned Vehicle</a></h3>
+                  <p>
+                    Discover essential tips to make your pre-owned vehicle purchase
+                    a breeze.
+                  </p>
+                  <a href="#">Read More →</a>
+                </div>
+              </div>
+
+              <div class="blog-card">
+                <img src="https://images.unsplash.com/photo-1502161254066-6c74afbf07aa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Mechanic working" />
+                <div class="blog-card-content">
+                  <small>Vehicle Maintenance</small>
+                  <h3><a href="#">The Importance of Vehicle Maintenance</a></h3>
+                  <p>
+                    Learn why regular vehicle maintenance is key to longevity and
+                    performance.
+                  </p>
+                  <a href="#">Read More →</a>
+                </div>
+              </div>
+
+              <div class="blog-card">
+                <img src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Car finance concept" />
+                <div class="blog-card-content">
+                  <small>Financing</small>
+                  <h3><a href="#">Understanding Vehicle Financing Options</a></h3>
+                  <p>
+                    Explore our various financing options available for your next
+                    vehicle purchase.
+                  </p>
+                  <a href="#">Read More →</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CONTACT FORM -->
+      <section id="get-in-touch">
+        <div class="container">
+          <div class="contact-content">
+            <h2>Get in Touch</h2>
+            <p>We'd love to hear from you!</p>
+
+            <div class="form-wrapper">
+              <form>
+                <div class="form-group">
+                  <label for="name">Name</label>
+                  <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    placeholder="Enter your name"
+                    required
+                  />
+                </div>
+
+                <div class="form-group">
+                  <label for="email">Email</label>
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    placeholder="Enter your email"
+                    required
+                  />
+                </div>
+
+                <div class="form-group">
+                  <label for="message">Message</label>
+                  <textarea
+                    id="message"
+                    name="message"
+                    rows="4"
+                    placeholder="Enter your message"
+                    required
+                  ></textarea>
+                </div>
+
+                <div class="form-group1">
+                  <input type="checkbox" id="checkbox" class="terms" required />
+                  <label for="terms">I accept the <a href="#">Terms and Conditions</a>.</label>
+                </div>
+
+                <button type="submit" class="btn btn-primary" style="width: 100%;">Submit</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+      <div class="footer-content">
+        <h2>AutoSphere</h2>
+
+        <div class="footer-links">
+          <a href="#home">Inventory</a>
+          <a href="#testimonials">Testimonials</a>
+          <a href="#customer-service">Customer Service</a>
+          <a href="#blog">Blog</a>
+        </div>
+
+        <div class="footer-bottom">
+          <p>
+            &copy; 2024 AutoSphere. All rights reserved.
+          </p>
+          <p>
+            <a href="#">Terms and Conditions</a>
+            <a href="#">Privacy Policy</a>
+          </p>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      // Hamburger menu functionality
+      const hamburger = document.getElementById('hamburger');
+      const navLinks = document.getElementById('nav-links');
+
+      hamburger.addEventListener('click', () => {
+        hamburger.classList.toggle('active');
+        navLinks.classList.toggle('active');
+      });
+
+      // Close menu when clicking on a link
+      document.querySelectorAll('.nav-links a').forEach(link => {
+        link.addEventListener('click', () => {
+          hamburger.classList.remove('active');
+          navLinks.classList.remove('active');
+        });
+      });
+
+      // Close menu when clicking outside
+      document.addEventListener('click', (e) => {
+        if (!hamburger.contains(e.target) && !navLinks.contains(e.target)) {
+          hamburger.classList.remove('active');
+          navLinks.classList.remove('active');
+        }
+      });
+
+      // Header scroll effect
+      window.addEventListener('scroll', () => {
+        const header = document.querySelector('header');
+        if (window.scrollY > 50) {
+          header.style.padding = '0.5rem 0';
+          header.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.1)';
+        } else {
+          header.style.padding = '1rem 0';
+          header.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.1)';
+        }
+      });
+    </script>
+  </body>
+</html>
